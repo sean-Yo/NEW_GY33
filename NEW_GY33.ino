@@ -17,7 +17,7 @@ byte rgb[3] = {0};
 void setup() {
   Serial.begin(9600);
  // Serial.print("hello");
-  mySerial.begin(115200);
+  mySerial.begin(9600);
   delay(1);
   mySerial.write(0XA5);
   mySerial.write(0X01);    //初始化,连续输出模式
@@ -47,9 +47,8 @@ void loop() {
   }
   //Serial.println("e");
   while (mySerial.available()) {
-      Serial.print("hello");
     byte  readedchar = mySerial.read();
-    //Serial.write(readedchar);
+    Serial.write(readedchar);
     Re_buf[counter] = (unsigned char)readedchar;
     if (counter == 0 && Re_buf[0] != 0x5A) return; // 检查帧头
     counter++;
